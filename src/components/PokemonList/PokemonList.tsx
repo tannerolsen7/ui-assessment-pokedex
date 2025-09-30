@@ -10,7 +10,20 @@ export const PokemonList = () => {
     <div className={classes.root}>
       {loading && <div>Loading...</div>}
       {pokemons.map((pkmn) => (
-        <div key={pkmn.id}>{pkmn.name}</div>
+        <div key={pkmn.id} className={classes.listItem}>
+          <img src={pkmn.image} alt={pkmn.name} className={classes.picture}/>
+          <div className={classes.info}>
+            <div className={classes.identifier}>
+              <h1 className={classes.name}>{pkmn.name}</h1>
+              <p className={classes.number}>{pkmn.number}</p>
+            </div>
+            <div className={classes.types}>
+              {pkmn.types.map((t) => (
+                <p className={classes.type}>{t}</p>
+              ))}
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   );
@@ -23,7 +36,67 @@ const useStyles = createUseStyles(
       textAlign: 'center',
       padding: '32px',
       boxSizing: 'border-box',
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '10px'
     },
+    listItem: {
+      '&:hover': {
+        transform: 'translateY(-2px)',
+        transition: 'transform ease-in-out 0.5s'
+      },
+      cursor: 'pointer',
+      display: 'flex',
+      margin: '8px 0',
+      background: 'white',
+      boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+      // background: 'rgba(255, 255, 255, 0.2)',
+      // boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+      // backdropFilter: 'blur(10.6px)',
+      // webkitBackdropFilter: 'blur(10.6px)',
+      // border: '1px solid rgba(255, 255, 255, 1)',
+      borderRadius: '16px',
+      padding: '16px 24px',
+      gap: '20px',
+      textAlign: 'left'
+    },
+    info: {
+      '& p, & h1': {
+        margin: '0',
+      },
+      display: 'flex',
+      flexDirection: 'column',
+      margin: 'auto 0',
+      gap: '5px'
+    },
+    picture: {
+      height: '100px',
+      width: '100px',
+      objectFit: 'contain',
+    },
+    identifier: {
+      display: 'flex',
+      // flexDirection: 'column',
+      gap: '5px',
+      alignItems: 'baseline'
+    },
+    name: {
+      fontWeight: 'bold',
+      color: '#333',
+    },
+    number: {
+      fontSize: '1.2rem',
+      color: 'rgba(0, 0, 0, 0.66)'
+    },
+    types: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '5px',
+      fontStyle: 'italic'
+    },
+    type: {
+      color: 'rgba(0, 0, 0, 0.66)'
+    }
   },
   { name: 'PokemonList' }
 );

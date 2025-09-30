@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LayoutProvider } from '../contexts';
 import { Nav } from '../components';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import { client } from './client';
 import { ListPage, Home } from '../screens';
 

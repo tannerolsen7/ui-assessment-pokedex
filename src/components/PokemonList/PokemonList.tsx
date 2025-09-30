@@ -1,29 +1,18 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useGetPokemons } from '../../hooks/useGetPokemons';
+import { PokemonListItem } from './PokemonListItem'
 
 export const PokemonList = () => {
   const classes = useStyles();
   const { pokemons, loading } = useGetPokemons();
+  const items = pokemons.map((p) => <PokemonListItem key={p.id} pkmn={p} />);
 
   return (
     <div className={classes.root}>
       {loading && <div>Loading...</div>}
-      {pokemons.map((pkmn) => (
-        <div key={pkmn.id} className={classes.listItem}>
-          <img src={pkmn.image} alt={pkmn.name} className={classes.picture}/>
-          <div className={classes.info}>
-            <div className={classes.identifier}>
-              <h1 className={classes.name}>{pkmn.name}</h1>
-              <p className={classes.number}>{pkmn.number}</p>
-            </div>
-            <div className={classes.types}>
-              {pkmn.types.map((t) => (
-                <p className={classes.type}>{t}</p>
-              ))}
-            </div>
-          </div>
-        </div>
+      {pokemons.map((p) => (
+        <PokemonListItem key={p.id} pkmn={p} />
       ))}
     </div>
   );

@@ -36,7 +36,7 @@ const useStyles = createUseStyles(
         cursor: 'pointer',
         display: 'flex',
         margin: '8px 0',
-        background: 'white',
+        background: 'linear-gradient(to right, #ffffff 20%, #f0f4f8 80%)',
         boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
         borderRadius: '16px',
         padding: '8px 16px',
@@ -64,10 +64,10 @@ const useStyles = createUseStyles(
       },
       name: {
         fontWeight: 'bold',
-        color: '#333',
+        color: 'rgb(19, 25, 36)',
       },
       number: {
-        fontSize: '1.2rem',
+        fontSize: '1.3rem',
         color: 'rgba(0, 0, 0, 0.66)'
       },
       types: {

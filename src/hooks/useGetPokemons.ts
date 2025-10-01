@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useQuery } from '@apollo/client/react';
+import { useSearch } from '../contexts/Search';
 import gql from 'graphql-tag';
 
 export type Pokemon = {
@@ -28,13 +29,24 @@ export const GET_POKEMONS = gql`
 `;
 
 export const useGetPokemons = () => {
+  const { searchString } = useSearch()
   const { data, ...queryRes } = useQuery(GET_POKEMONS, {
     variables: {
       first: 151, // Keep hard coded
     },
   });
 
-  const pokemons: Pokemon[] = useMemo(() => data?.pokemons || [], [data]);
+  const pokemons: Pokemon[] = useMemo(() => {
+    return data?.pokemons || []
+  }, [data]);
+
+  const shownPokemons: Pokemon[] = useMemo(() => {
+    if(!searchString) return pokemons;
+
+    return pokemons.filter((p) => {
+      return p.name.toLowerCase().includes(searchString.toLowerCase())
+    })
+  }, [pokemons, searchString])
 
   const pokemonOptions: PokemonOption[] = useMemo(
     () => pokemons.map((p: Pokemon) => ({ value: p.id, label: p.name })),
@@ -42,7 +54,8 @@ export const useGetPokemons = () => {
   );
 
   return {
-    pokemons,
+    pokemons,          //full list
+    shownPokemons,  
     pokemonOptions,
     ...queryRes,
   };

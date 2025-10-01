@@ -6,18 +6,19 @@ import { PokemonSearch } from './PokemonSearch';
 
 export const PokemonList = () => {
   const classes = useStyles();
-  const { pokemons, loading } = useGetPokemons();
+  const { shownPokemons, loading } = useGetPokemons();
 
   return (
     <div className={classes.root}>
       {loading && <div>Loading...</div>}
+
       <div>
         <div className={classes.searchContainer}>
           <PokemonSearch />
         </div>
 
         <div className={classes.listContainer}>
-          {pokemons.map((p) => (
+          {shownPokemons.map((p) => (
             <PokemonListItem key={p.id} pkmn={p} />
           ))}
         </div>

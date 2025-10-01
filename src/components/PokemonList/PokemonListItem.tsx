@@ -30,8 +30,7 @@ const useStyles = createUseStyles(
     {
       listItem: {
         '&:hover': {
-          transform: 'translateY(-2px)',
-          transition: 'transform ease-in-out 0.5s'
+          transform: 'translateY(-4px)',
         },
         cursor: 'pointer',
         display: 'flex',

@@ -9,20 +9,20 @@ export const PokemonListItem = ({pkmn}: Props) => {
     const classes = useStyles();
 
     return (
-        <div key={pkmn.id} className={classes.listItem}>
-            <img src={pkmn.image} alt={pkmn.name} className={classes.picture}/>
-            <div className={classes.info}>
-            <div className={classes.identifier}>
-                <h1 className={classes.name}>{pkmn.name}</h1>
-                <p className={classes.number}>{pkmn.number}</p>
-            </div>
-            <div className={classes.types}>
-                {pkmn.types.map((t) => (
-                    <p className={classes.type}>{t}</p>
-                ))}
-            </div>
-            </div>
-        </div>
+      <div key={pkmn.id} className={classes.listItem}>
+          <img src={pkmn.image} alt={pkmn.name} className={classes.picture}/>
+          <div className={classes.info}>
+          <div className={classes.identifier}>
+              <h1 className={classes.name}>{pkmn.name}</h1>
+              <p className={classes.number}>{pkmn.number}</p>
+          </div>
+          <div className={classes.types}>
+              {pkmn.types.map((t) => (
+                  <p className={classes.type}>{t}</p>
+              ))}
+          </div>
+          </div>
+      </div>
     )
 };
 

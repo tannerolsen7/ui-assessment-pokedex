@@ -34,8 +34,6 @@ export const useGetPokemons = () => {
     },
   });
 
-  console.log('data:', data)
-
   const pokemons: Pokemon[] = useMemo(() => data?.pokemons || [], [data]);
 
   const pokemonOptions: PokemonOption[] = useMemo(

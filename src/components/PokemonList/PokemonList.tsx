@@ -1,19 +1,27 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useGetPokemons } from '../../hooks/useGetPokemons';
-import { PokemonListItem } from './PokemonListItem'
+import { PokemonListItem } from './PokemonListItem';
+import { PokemonSearch } from './PokemonSearch';
 
 export const PokemonList = () => {
   const classes = useStyles();
   const { pokemons, loading } = useGetPokemons();
-  const items = pokemons.map((p) => <PokemonListItem key={p.id} pkmn={p} />);
 
   return (
     <div className={classes.root}>
       {loading && <div>Loading...</div>}
-      {pokemons.map((p) => (
-        <PokemonListItem key={p.id} pkmn={p} />
-      ))}
+      <div>
+        <div className={classes.searchContainer}>
+          <PokemonSearch />
+        </div>
+
+        <div className={classes.listContainer}>
+          {pokemons.map((p) => (
+            <PokemonListItem key={p.id} pkmn={p} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
@@ -26,28 +34,18 @@ const useStyles = createUseStyles(
       padding: '32px',
       boxSizing: 'border-box',
       display: 'flex',
-      flexWrap: 'wrap',
-      gap: '10px'
+      flexDirection: 'column',
     },
-    listItem: {
-      '&:hover': {
-        transform: 'translateY(-2px)',
-        transition: 'transform ease-in-out 0.5s'
-      },
-      cursor: 'pointer',
+    searchContainer: {
+      marginBottom: '12px'
+    },
+    listContainer: {
       display: 'flex',
-      margin: '8px 0',
-      background: 'white',
-      boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-      // background: 'rgba(255, 255, 255, 0.2)',
-      // boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-      // backdropFilter: 'blur(10.6px)',
-      // webkitBackdropFilter: 'blur(10.6px)',
-      // border: '1px solid rgba(255, 255, 255, 1)',
-      borderRadius: '16px',
-      padding: '16px 24px',
-      gap: '20px',
-      textAlign: 'left'
+      justifyContent: 'center',
+      maxWidth: '1400px',
+      margin: 'auto',
+      flexWrap: 'wrap',
+      gap: '12px',
     },
     info: {
       '& p, & h1': {
@@ -56,7 +54,7 @@ const useStyles = createUseStyles(
       display: 'flex',
       flexDirection: 'column',
       margin: 'auto 0',
-      gap: '5px'
+      gap: '4px'
     },
     picture: {
       height: '100px',
@@ -66,7 +64,7 @@ const useStyles = createUseStyles(
     identifier: {
       display: 'flex',
       // flexDirection: 'column',
-      gap: '5px',
+      gap: '4px',
       alignItems: 'baseline'
     },
     name: {
@@ -80,7 +78,7 @@ const useStyles = createUseStyles(
     types: {
       display: 'flex',
       flexWrap: 'wrap',
-      gap: '5px',
+      gap: '4px',
       fontStyle: 'italic'
     },
     type: {

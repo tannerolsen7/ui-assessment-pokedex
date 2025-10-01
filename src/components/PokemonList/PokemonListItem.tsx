@@ -17,8 +17,8 @@ export const PokemonListItem = ({pkmn}: Props) => {
               <p className={classes.number}>{pkmn.number}</p>
           </div>
           <div className={classes.types}>
-              {pkmn.types.map((t) => (
-                  <p className={classes.type}>{t}</p>
+              {pkmn.types.map((t,index) => (
+                  <p key={index} className={classes.type}>{t}</p>
               ))}
           </div>
           </div>
@@ -40,7 +40,8 @@ const useStyles = createUseStyles(
         borderRadius: '16px',
         padding: '8px 16px',
         gap: '20px',
-        textAlign: 'left'
+        textAlign: 'left',
+        width: 'fit-content'
       },
       info: {
         '& p, & h1': {

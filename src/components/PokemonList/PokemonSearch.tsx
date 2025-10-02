@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from 'react-jss';
-import { useSearch } from '../../contexts/Search';
+import { useSearch } from '../../contexts/SearchContext';
 
 export const PokemonSearch = () => {
     const { searchString, setSearchString } = useSearch()

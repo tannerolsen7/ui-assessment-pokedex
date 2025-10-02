@@ -1,7 +1,9 @@
+import { flex } from '@mui/system';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useGetPokemons } from '../../hooks/useGetPokemons';
 import { PokemonListItem } from './PokemonListItem';
+import { PokemonListItemSkeleton } from './PokemonListItemLoadingSkeleton';
 import { PokemonSearch } from './PokemonSearch';
 
 export const PokemonList = () => {
@@ -10,8 +12,18 @@ export const PokemonList = () => {
 
   return (
     <div className={classes.root}>
-      {loading && <div>Loading...</div>}
+      {loading && 
+        <>
+          <div>Loading...</div>
+          <div className={classes.skeletons}>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <PokemonListItemSkeleton key={index} />
+            ))}
+          </div>
+        </>
+      }
 
+      {!loading && 
       <div>
         <div className={classes.searchContainer}>
           <PokemonSearch />
@@ -23,6 +35,7 @@ export const PokemonList = () => {
           ))}
         </div>
       </div>
+      }
     </div>
   );
 };
@@ -36,6 +49,12 @@ const useStyles = createUseStyles(
       boxSizing: 'border-box',
       display: 'flex',
       flexDirection: 'column',
+    },
+    skeletons: {
+      display: 'flex',
+      gap: '8px',
+      margin: 'auto',
+      flexWrap: 'wrap'
     },
     searchContainer: {
       marginBottom: '12px'

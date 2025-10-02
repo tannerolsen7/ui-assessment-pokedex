@@ -1,16 +1,13 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { PokemonList } from '../components';
-import { SearchProvider } from 'src/contexts/Search';
 
 export const ListPage = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <SearchProvider>
-        <PokemonList />
-      </SearchProvider>
+      <PokemonList />
     </div>
   );
 };

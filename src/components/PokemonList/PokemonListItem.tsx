@@ -1,29 +1,36 @@
 import { createUseStyles } from 'react-jss';
 import type { Pokemon } from 'src/hooks/useGetPokemons';
+import { Link, useLocation, Location, To } from 'react-router-dom';
 
 type Props = { 
-    pkmn: Pokemon
+  pkmn: Pokemon
 }
 
 export const PokemonListItem = ({pkmn}: Props) => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const location: Location = useLocation();
 
-    return (
+  return (
+    <Link   
+      to={`/pokemon/${pkmn.id}`}
+      state={{ background: location }}
+    >
       <div key={pkmn.id} className={classes.listItem}>
-          <img src={pkmn.image} alt={pkmn.name} className={classes.picture}/>
-          <div className={classes.info}>
+        <img src={pkmn.image} alt={pkmn.name} className={classes.picture}/>
+        <div className={classes.info}>
           <div className={classes.identifier}>
-              <h1 className={classes.name}>{pkmn.name}</h1>
-              <p className={classes.number}>{pkmn.number}</p>
+            <h1 className={classes.name}>{pkmn.name}</h1>
+            <p className={classes.number}>{pkmn.number}</p>
           </div>
           <div className={classes.types}>
-              {pkmn.types.map((t,index) => (
-                  <p key={index} className={classes.type}>{t}</p>
-              ))}
+            {pkmn.types.map((t,index) => (
+              <p key={index} className={classes.type}>{t}</p>
+            ))}
           </div>
-          </div>
+        </div>
       </div>
-    )
+    </Link>
+  )
 };
 
 const useStyles = createUseStyles(

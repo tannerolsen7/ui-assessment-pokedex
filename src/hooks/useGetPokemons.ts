@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useQuery } from '@apollo/client/react';
-import { useSearch } from '../contexts/Search';
+import { useSearch } from '../contexts/SearchContext';
 import gql from 'graphql-tag';
 
 export type Pokemon = {
@@ -54,7 +54,7 @@ export const useGetPokemons = () => {
   );
 
   return {
-    pokemons,          //full list
+    pokemons,  
     shownPokemons,  
     pokemonOptions,
     ...queryRes,

@@ -48,7 +48,12 @@ const useStyles = createUseStyles(
         padding: '8px 16px',
         gap: '20px',
         textAlign: 'left',
-        width: 'fit-content'
+        width: 'fit-content',
+
+        '@media (max-width: 1000px)': {
+          flexDirection: 'column',
+          width: '200px'
+        }
       },
       info: {
         '& p, & h1': {

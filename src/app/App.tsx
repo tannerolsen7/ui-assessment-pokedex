@@ -60,6 +60,11 @@ const useStyles = createUseStyles(
       height: '100%',
       width: '100%',
       display: 'flex',
+
+      '@media (max-width: 1000px)': {
+        flexDirection: 'column',
+        padding: '16px'
+      }
     },
     content: {
       flex: '1',

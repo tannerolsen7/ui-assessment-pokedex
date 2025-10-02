@@ -44,6 +44,9 @@ const useStyles = createUseStyles(
             maxWidth: '480px',
             margin: 'auto',
             transition: 'box-shadow .3s ease',
+            '@media (max-width: 1000px)': {
+                maxWidth: '200px',
+            }
         },
         search: {
             flexGrow: '1',
